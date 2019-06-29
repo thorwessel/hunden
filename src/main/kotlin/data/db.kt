@@ -19,6 +19,14 @@ class HundenDB(private val db: Database) {
         }
     }
 
+    fun fetchProducts(): List<Product> {
+        return transaction(db) {
+            Products
+                .selectAll()
+                .map { it.toProduct() }
+        }
+    }
+
     fun fetchHistory(): List<PriceHistory> {
         return transaction(db) {
             Products

@@ -34,7 +34,6 @@ class HundenRest(
         // Set up URL endpoints for the rest app
         app.routes {
             path("rest") {
-                // Route to check whether the app is running
                 // URL: /rest/health
                 get("health") {
                     it.json("ok")
@@ -42,10 +41,13 @@ class HundenRest(
 
                 // V1
                 path("v1") {
+                    // URL: /rest/v1
                     path("products") {
+                        // URL: /rest/v1/products
                         get {
-                            it.json("Not ready yet")
+                            it.json(productService.fetchAll())
                         }
+                        // URL: /rest/v1/products/{:id}
                         get(":id") {
                             it.json(productService.fetch(it.pathParam("id").toInt()))
                         }

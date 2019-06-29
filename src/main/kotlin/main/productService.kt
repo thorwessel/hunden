@@ -5,9 +5,9 @@ import exceptions.ProductNotFound
 import models.Product
 
 class ProductService(private val dal: HundenDB) {
-    //fun fetchAll(): List<Product> {
-    //    return
-    //}
+    fun fetchAll(): List<Product> {
+        return dal.fetchProducts()
+    }
 
     fun fetch(id: Int): Product {
         return dal.fetch(id) ?: throw ProductNotFound(id)
