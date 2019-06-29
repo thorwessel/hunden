@@ -36,7 +36,6 @@ class HundenDB(private val db: Database) {
                     it[this.url] = product.url
                 } get Products.id
         }
-
         return fetch(id!!)
     }
 }
