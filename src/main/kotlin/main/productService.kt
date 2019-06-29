@@ -3,6 +3,7 @@ package main
 import data.HundenDB
 import exceptions.ProductNotFound
 import models.Product
+import java.math.BigDecimal
 
 class ProductService(private val dal: HundenDB) {
     fun fetchAll(): List<Product> {
@@ -13,7 +14,7 @@ class ProductService(private val dal: HundenDB) {
         return dal.fetch(id) ?: throw ProductNotFound(id)
     }
 
-    fun addProduct(product: Product) {
-        dal.addProduct(product)
+    fun addProduct(price: BigDecimal, productName: String, url: String) {
+        dal.addProduct(price, productName, url)
     }
 }

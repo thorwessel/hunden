@@ -6,6 +6,7 @@ import models.PriceHistory
 import models.history
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.math.BigDecimal
 
 class HundenDB(private val db: Database) {
     fun fetch(id: Int): Product? {
@@ -35,13 +36,13 @@ class HundenDB(private val db: Database) {
         }
     }
 
-    fun addProduct(product: Product): Product? {
+    fun addProduct(price: BigDecimal, productName: String, url: String): Product? {
         val id = transaction(db) {
             Products
                 .insert {
-                    it[this.price] = product.price
-                    it[this.productName] = product.productName
-                    it[this.url] = product.url
+                    it[this.price] = price
+                    it[this.productName] = productName
+                    it[this.url] = url
                 } get Products.id
         }
         return fetch(id!!)
