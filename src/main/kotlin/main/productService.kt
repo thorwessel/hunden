@@ -1,6 +1,7 @@
 package main
 
 import data.HundenDB
+import exceptions.ProductNotFound
 import models.Product
 
 class ProductService(private val dal: HundenDB) {
@@ -8,8 +9,8 @@ class ProductService(private val dal: HundenDB) {
     //    return
     //}
 
-    fun fetch(id: Int): Product? {
-        return dal.fetch(id)
+    fun fetch(id: Int): Product {
+        return dal.fetch(id) ?: throw ProductNotFound(id)
     }
 
     fun addProduct(product: Product) {
