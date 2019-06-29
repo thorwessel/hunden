@@ -7,7 +7,8 @@ import org.jetbrains.exposed.sql.ResultRow
 fun ResultRow.toProduct(): Product = Product(
     id = this[Products.id],
     productName = this[Products.productName],
-    price = this[Products.price]
+    price = this[Products.price],
+    url = this[Products.url]
 )
 
 fun ResultRow.history(): PriceHistory = PriceHistory(

@@ -6,6 +6,7 @@ object Products : Table() {
     val id = integer("id").autoIncrement().primaryKey()
     val productName = text("product_name")
     val price = decimal("value", 1000, 10)
+    val url = text("url")
 }
 
 object PriceHistories : Table() {

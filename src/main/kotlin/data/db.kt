@@ -26,4 +26,17 @@ class HundenDB(private val db: Database) {
                 .map { it.history() }
         }
     }
+
+    fun addProduct(product: Product): Product? {
+        val id = transaction(db) {
+            Products
+                .insert {
+                    it[this.price] = product.price
+                    it[this.productName] = product.productName
+                    it[this.url] = product.url
+                } get Products.id
+        }
+
+        return fetch(id!!)
+    }
 }
