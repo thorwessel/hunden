@@ -11,6 +11,7 @@ import java.sql.Connection
 import data.PriceHistories
 import data.Products
 import rest.HundenRest
+import services.HistoryService
 import services.ProductService
 
 fun main() {
@@ -30,6 +31,9 @@ fun main() {
 
     val dal = HundenDB(db = db)
     val productService = ProductService(dal = dal)
+
+    val historyService = HistoryService(dal)
+    historyService.fetchPrice()
 
     HundenRest(productService = productService).run()
 }

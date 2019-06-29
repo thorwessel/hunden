@@ -20,6 +20,7 @@ dependencies {
     compile ("org.xerial:sqlite-jdbc:3.21.0.1")
     compile ("org.slf4j:slf4j-simple:1.7.25")
     compile ("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
+    compile ("org.jsoup:jsoup:1.12.1")
 }
 
 tasks.withType<KotlinCompile> {
