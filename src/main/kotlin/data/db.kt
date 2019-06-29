@@ -40,8 +40,8 @@ class HundenDB(private val db: Database) {
         val id = transaction(db) {
             Products
                 .insert {
-                    it[this.price] = price
                     it[this.productName] = productName
+                    it[this.price] = price
                     it[this.url] = url
                 } get Products.id
         }
