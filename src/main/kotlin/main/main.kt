@@ -31,6 +31,7 @@ fun main() {
         }
 
     val dal = HundenDB(db = db)
+    val productService = ProductService(dal = dal)
 
-    HundenRest().run()
+    HundenRest(productService = productService).run()
 }
