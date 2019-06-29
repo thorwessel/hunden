@@ -2,8 +2,7 @@ package rest
 
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
-import main.ProductService
-import models.Product
+import services.ProductService
 import org.jetbrains.exposed.exceptions.EntityNotFoundException
 
 class HundenRest(
@@ -54,16 +53,11 @@ class HundenRest(
                         // URL: /rest/v1/products/add
                         post("add") {
                             //TODO handle incorrect JSON
-                            val response = it.body()
                             val price = it.formParam("price")
                             val productName = it.formParam("productName")
                             val url = it.formParam("url")
-                            println(response)
-                            println(price)
-                            println(productName)
-                            println(url)
                             if (price != null && productName != null && url != null) {
-                                productService.addProduct(price = price.toBigDecimal(), productName = productName.toString(), url = url.toString())
+                                productService.addProduct(price = price.toInt().toBigDecimal(), productName = productName.toString(), url = url.toString())
                             }
                         }
                     }
