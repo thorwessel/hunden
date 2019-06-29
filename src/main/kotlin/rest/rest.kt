@@ -3,9 +3,12 @@ package rest
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.path
+import main.ProductService
 import org.jetbrains.exposed.exceptions.EntityNotFoundException
 
-class HundenRest: Runnable {
+class HundenRest(
+    private val productService: ProductService
+) : Runnable {
 
     override fun run() {
         app.start(7000)
@@ -39,6 +42,14 @@ class HundenRest: Runnable {
 
                 // V1
                 path("v1") {
+                    path("products") {
+                        get {
+                            it.json("Not ready yet")
+                        }
+                        get(":id") {
+                            it.json(productService.fetch(it.pathParam("id").toInt()))
+                        }
+                    }
                 }
             }
         }
