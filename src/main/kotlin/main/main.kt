@@ -33,7 +33,7 @@ fun main() {
     val productService = ProductService(dal = dal)
 
     val historyService = HistoryService(dal)
-    historyService.fetchPrice()
+
 
     HundenRest(productService = productService).run()
 }

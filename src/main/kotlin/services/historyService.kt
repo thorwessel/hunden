@@ -1,6 +1,8 @@
 package services
 
 import data.HundenDB
+import exceptions.ProductNotFound
+import models.Product
 import org.jsoup.Jsoup
 import java.math.BigDecimal
 
@@ -9,11 +11,13 @@ class HistoryService(
 ) {
     fun updateHistory(id: Int) {
         val product = db.fetch(id)
-
+        product?.let {
+            db.addHistory(product, fetchPrice(it))
+        }
     }
 
-    fun fetchPrice(): BigDecimal {
-        val doc = Jsoup.connect("https://www.pricerunner.dk/pl/40-4707682/CPU/Intel-Core-i7-9700K-3.6GHz-Box-Sammenlign-Priser").get().select("meta[itemprop=lowPrice]").toString()
+    fun fetchPrice(product: Product): BigDecimal {
+        val doc = Jsoup.connect(product.url).get().select("meta[itemprop=lowPrice]").toString()
         var lowPrice = ""
         for (x in doc) {
             if (x.isDigit()) lowPrice += x

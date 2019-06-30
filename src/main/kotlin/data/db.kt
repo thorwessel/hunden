@@ -6,7 +6,9 @@ import models.PriceHistory
 import models.history
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 import java.math.BigDecimal
+import java.time.LocalDate
 
 class HundenDB(private val db: Database) {
     fun fetch(id: Int): Product? {
@@ -46,5 +48,16 @@ class HundenDB(private val db: Database) {
                 } get Products.id
         }
         return fetch(id!!)
+    }
+
+    fun addHistory(product: Product, price: BigDecimal) {
+        val id = transaction(db) {
+            PriceHistories
+                .insert {
+                    it[this.productId] = product.id
+                    it[this.price] = price
+                    it[this.date] = DateTime.now()
+                } get Products.id
+        }
     }
 }
