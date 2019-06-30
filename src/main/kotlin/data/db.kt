@@ -32,7 +32,7 @@ class HundenDB(private val db: Database) {
 
     fun fetchHistory(): List<PriceHistory> {
         return transaction(db) {
-            Products
+            PriceHistories
                 .selectAll()
                 .map { it.history() }
         }
