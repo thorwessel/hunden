@@ -7,5 +7,5 @@ data class PriceHistory(
     val id: Int,
     val productId: Int,
     val price: BigDecimal,
-    val date: DateTime
+    val date: String
 )

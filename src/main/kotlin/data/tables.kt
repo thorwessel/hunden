@@ -13,5 +13,5 @@ object PriceHistories : Table() {
     val id = integer("id").autoIncrement().primaryKey()
     val productId = reference("product_id", Products.id)
     val price = decimal("price", 1000, 10)
-    val date = date("date")
+    val date = text("date")
 }

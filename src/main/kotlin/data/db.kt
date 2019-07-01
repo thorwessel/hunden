@@ -8,6 +8,8 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import java.math.BigDecimal
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 class HundenDB(private val db: Database) {
     fun fetch(id: Int): Product? {
@@ -55,7 +57,7 @@ class HundenDB(private val db: Database) {
                 .insert {
                     it[this.productId] = product.id
                     it[this.price] = price
-                    it[this.date] = DateTime.now()
+                    it[this.date] = LocalDateTime.now().toString()
                 } get PriceHistories.id
         }
     }
