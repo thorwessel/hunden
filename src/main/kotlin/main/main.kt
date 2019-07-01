@@ -35,5 +35,7 @@ fun main() {
     val historyService = HistoryService(dal)
 
 
-    HundenRest(productService = productService).run()
+    HundenRest(
+        productService = productService,
+        historyService = historyService).run()
 }

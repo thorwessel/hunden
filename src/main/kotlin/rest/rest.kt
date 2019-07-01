@@ -4,9 +4,11 @@ import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import services.ProductService
 import org.jetbrains.exposed.exceptions.EntityNotFoundException
+import services.HistoryService
 
 class HundenRest(
-    private val productService: ProductService
+    private val productService: ProductService,
+    private val historyService: HistoryService
 ) : Runnable {
 
     override fun run() {
@@ -61,6 +63,13 @@ class HundenRest(
                             }
                         }
                     }
+                    path("history") {
+
+                        get(":id") {
+                            it.json(productService.fetchHistory(it.pathParam("id").toInt()))
+                        }
+                    }
+
                 }
             }
         }

@@ -30,10 +30,10 @@ class HundenDB(private val db: Database) {
         }
     }
 
-    fun fetchHistory(): List<PriceHistory> {
+    fun fetchHistory(id: Int): List<PriceHistory> {
         return transaction(db) {
             PriceHistories
-                .selectAll()
+                .select { Products.id.eq(id) }
                 .map { it.history() }
         }
     }
@@ -51,13 +51,13 @@ class HundenDB(private val db: Database) {
     }
 
     fun addHistory(product: Product, price: BigDecimal) {
-        val id = transaction(db) {
+        transaction(db) {
             PriceHistories
                 .insert {
                     it[this.productId] = product.id
                     it[this.price] = price
                     it[this.date] = DateTime.now()
-                } get Products.id
+                } get PriceHistories.id
         }
     }
 }

@@ -2,6 +2,7 @@ package services
 
 import data.HundenDB
 import exceptions.ProductNotFound
+import models.PriceHistory
 import models.Product
 import java.math.BigDecimal
 
@@ -16,5 +17,9 @@ class ProductService(private val dal: HundenDB) {
 
     fun addProduct(price: BigDecimal, productName: String, url: String) {
         dal.addProduct(price, productName, url)
+    }
+
+    fun fetchHistory(id: Int): List<PriceHistory> {
+        return dal.fetchHistory(id)
     }
 }
