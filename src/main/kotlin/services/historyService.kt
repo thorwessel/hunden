@@ -1,7 +1,6 @@
 package services
 
 import data.HundenDB
-import exceptions.ProductNotFound
 import models.Product
 import org.jsoup.Jsoup
 import java.math.BigDecimal

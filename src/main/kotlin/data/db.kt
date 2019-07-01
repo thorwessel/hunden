@@ -8,7 +8,6 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import java.math.BigDecimal
-import java.time.LocalDate
 
 class HundenDB(private val db: Database) {
     fun fetch(id: Int): Product? {
@@ -47,7 +46,7 @@ class HundenDB(private val db: Database) {
                     it[this.url] = url
                 } get Products.id
         }
-        return fetch(id!!)
+        return fetch(id)
     }
 
     fun addHistory(product: Product, price: BigDecimal) {
