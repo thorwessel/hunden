@@ -15,8 +15,8 @@ class ProductService(private val dal: HundenDB) {
         return dal.fetch(id) ?: throw ProductNotFound(id)
     }
 
-    fun addProduct(price: BigDecimal, productName: String, url: String) {
-        dal.addProduct(price, productName, url)
+    fun addProduct(price: BigDecimal, productName: String, url: String): Product? {
+        return dal.addProduct(price, productName, url)
     }
 
     fun fetchHistory(id: Int): List<PriceHistory> {

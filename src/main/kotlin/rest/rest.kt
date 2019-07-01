@@ -59,8 +59,9 @@ class HundenRest(
                             val url = it.formParam("url")
                             if (url != null && productName != null) {
                                 val price = historyService.fetchPrice(url)
-                                productService.addProduct(price = price, productName = productName.toString(), url = url.toString())
+                                val result = productService.addProduct(price = price, productName = productName.toString(), url = url.toString())
                                 println("$productName was added with price: $price")
+                                if (result != null) it.json(result)
                             }
                         }
                     }
