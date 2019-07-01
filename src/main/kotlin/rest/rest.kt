@@ -64,12 +64,17 @@ class HundenRest(
                         }
                     }
                     path("history") {
-
+                        // URL: /rest/v1/history/{id}
                         get(":id") {
                             it.json(productService.fetchHistory(it.pathParam("id").toInt()))
                         }
                     }
 
+                    path("update") {
+                        get("secureendpoint") {
+                            historyService.updateAllProducts()
+                        }
+                    }
                 }
             }
         }
