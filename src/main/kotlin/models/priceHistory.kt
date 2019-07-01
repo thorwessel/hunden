@@ -1,6 +1,5 @@
 package models
 
-import org.joda.time.DateTime
 import java.math.BigDecimal
 
 data class PriceHistory(
