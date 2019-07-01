@@ -16,11 +16,11 @@ class HistoryService(
     }
 
     private fun updateHistory(product: Product) {
-        db.addHistory(product, fetchPrice(product))
+        db.addHistory(product, fetchPrice(product.url))
     }
 
-    private fun fetchPrice(product: Product): BigDecimal {
-        val doc = Jsoup.connect(product.url).get().select("meta[itemprop=lowPrice]").toString()
+    fun fetchPrice(url: String): BigDecimal {
+        val doc = Jsoup.connect(url).get().select("meta[itemprop=lowPrice]").toString()
         var lowPrice = ""
         for (x in doc) {
             if (x.isDigit()) lowPrice += x

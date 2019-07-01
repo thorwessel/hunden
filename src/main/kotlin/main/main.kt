@@ -19,7 +19,9 @@ fun main() {
     val tables = arrayOf(Products, PriceHistories)
 
     val db = Database
-        .connect("jdbc:sqlite:/kode projekter/hunden/src/data/data.db", "org.sqlite.JDBC")
+            //Make sure DB is located in the below path!
+            //kode projekter/hunden/src/data/data.db
+        .connect("jdbc:sqlite:src/data/data.db", "org.sqlite.JDBC")
         .also {
             TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
             transaction(it) {

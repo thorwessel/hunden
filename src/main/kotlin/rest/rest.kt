@@ -55,11 +55,12 @@ class HundenRest(
                         // URL: /rest/v1/products/add
                         post("add") {
                             //TODO handle incorrect JSON
-                            val price = it.formParam("price")
                             val productName = it.formParam("productName")
                             val url = it.formParam("url")
-                            if (price != null && productName != null && url != null) {
-                                productService.addProduct(price = price.toInt().toBigDecimal(), productName = productName.toString(), url = url.toString())
+                            if (url != null && productName != null) {
+                                val price = historyService.fetchPrice(url)
+                                productService.addProduct(price = price, productName = productName.toString(), url = url.toString())
+                                println("$productName was added with price: $price")
                             }
                         }
                     }
