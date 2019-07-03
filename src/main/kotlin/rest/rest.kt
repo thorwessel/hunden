@@ -64,6 +64,8 @@ class HundenRest(
                                 if (result != null) {
                                     historyService.updateHistory(result, price)
                                     it.json(result)
+                                } else {
+                                    it.json("Error")
                                 }
                             }
                         }
