@@ -12,6 +12,7 @@ class HundenRest(
 ) : Runnable {
 
     override fun run() {
+        app.enableCorsForAllOrigins()
         app.start(7000)
     }
 
