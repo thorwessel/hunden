@@ -70,6 +70,7 @@ class HundenRest(
                             }
                         }
                     }
+                    // URL: /rest/v1/history
                     path("history") {
                         // URL: /rest/v1/history/{id}
                         get(":id") {
@@ -78,6 +79,7 @@ class HundenRest(
                     }
 
                     path("update") {
+                        // URL: /rest/v1/update/secureendpoint
                         get("secureendpoint") {
                             historyService.updateAllProducts()
                         }
