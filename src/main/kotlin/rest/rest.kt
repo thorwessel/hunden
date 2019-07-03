@@ -61,7 +61,10 @@ class HundenRest(
                                 val price = historyService.fetchPrice(url)
                                 val result = productService.addProduct(price = price, productName = productName.toString(), url = url.toString())
                                 println("$productName was added with price: $price")
-                                if (result != null) it.json(result)
+                                if (result != null) {
+                                    historyService.updateHistory(result, price)
+                                    it.json(result)
+                                }
                             }
                         }
                     }

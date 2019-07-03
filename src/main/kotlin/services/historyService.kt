@@ -11,12 +11,12 @@ class HistoryService(
     fun updateAllProducts() {
         val products = db.fetchProducts()
         products.forEach {
-            updateHistory(it)
+            updateHistory(it, fetchPrice(it.url))
         }
     }
 
-    private fun updateHistory(product: Product) {
-        db.addHistory(product, fetchPrice(product.url))
+    fun updateHistory(product: Product, price: BigDecimal) {
+        db.addHistory(product, price)
     }
 
     fun fetchPrice(url: String): BigDecimal {
