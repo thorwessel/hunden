@@ -1,7 +1,4 @@
 rootProject.name = 'hunden'
 
-task("stage") {
-    //todo  dependsOn.add("clean")
-    dependsOn.add("build")
-    dependsOn.add("copyToLib")
-}
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
