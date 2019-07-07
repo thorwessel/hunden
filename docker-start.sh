@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Create a new image version with latest code changes.
-docker build . --tag hunden
+docker build . --tag pleo-antaeus
 
 # Build the code.
 docker run \
@@ -11,4 +11,4 @@ docker run \
   --interactive \
   --tty \
   --volume pleo-antaeus-build-cache:/home/pleo/.gradle \
-  hunden
+  pleo-antaeus

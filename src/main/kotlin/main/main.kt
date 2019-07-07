@@ -1,3 +1,5 @@
+@file:JvmName("hunden")
+
 package main
 
 import data.HundenDB
