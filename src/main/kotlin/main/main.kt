@@ -24,7 +24,7 @@ fun main() {
             //Make sure DB is located in the below path!
             // /kode projekter/hunden/src/data/data.db
             //src/data/data.db
-        .connect("jdbc:sqlite:/src/data/data.db", "org.sqlite.JDBC")
+        .connect("jdbc:sqlite:/tmp/data.db", "org.sqlite.JDBC")
         .also {
             TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
             transaction(it) {

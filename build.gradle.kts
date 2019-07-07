@@ -5,6 +5,10 @@ plugins {
     application
 }
 
+application {
+    mainClassName = "main.hunden"
+}
+
 group = "hunden"
 version = "1.0-SNAPSHOT"
 
