@@ -64,9 +64,9 @@ class HundenRest(
                                 println("$productName was added with price: $price")
                                 if (result != null) {
                                     historyService.updateHistory(result, price)
-                                    it.json(result)
+                                    it.status(200).json(result)
                                 } else {
-                                    it.json("Error")
+                                    it.status(404)
                                 }
                             }
                         }
