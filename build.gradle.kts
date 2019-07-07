@@ -26,3 +26,12 @@ dependencies {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+tasks {
+    val copyToLib by registering(Copy::class) {
+        into("$buildDir/server")
+    }
+    val stage by registering {
+        dependsOn("build", copyToLib)
+    }
+}
