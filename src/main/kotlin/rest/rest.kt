@@ -70,6 +70,13 @@ class HundenRest(
                                 }
                             }
                         }
+
+                        path("delete") {
+                            // URL: /rest/v1/products/delete/{id}
+                            get(":id") {
+                                it.json(productService.deleteProduct(it.pathParam("id").toInt()))
+                            }
+                        }
                     }
                     // URL: /rest/v1/history
                     path("history") {

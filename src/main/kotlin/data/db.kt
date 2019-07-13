@@ -73,4 +73,15 @@ class HundenDB(private val db: Database) {
             }
         }
     }
+
+    fun deleteProduct(id: Int): Product? {
+        val product = fetch(id)
+        if (product != null) {
+            transaction(db) {
+                Products.deleteWhere { Products.id.eq(id) }
+                PriceHistories.deleteWhere { PriceHistories.productId.eq(id) }
+            }
+        }
+        return product
+    }
 }

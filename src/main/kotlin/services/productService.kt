@@ -22,4 +22,8 @@ class ProductService(private val dal: HundenDB) {
     fun fetchHistory(id: Int): List<PriceHistory> {
         return dal.fetchHistory(id)
     }
+
+    fun deleteProduct(id: Int): Product {
+        return dal.deleteProduct(id) ?: throw ProductNotFound(id)
+    }
 }
