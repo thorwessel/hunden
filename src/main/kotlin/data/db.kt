@@ -5,6 +5,7 @@ import models.toProduct
 import models.PriceHistory
 import models.history
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import java.math.BigDecimal
@@ -59,6 +60,17 @@ class HundenDB(private val db: Database) {
                     it[this.price] = price
                     it[this.date] = LocalDateTime.now().toString()
                 } get PriceHistories.id
+        }
+    }
+
+    fun updatePriceOnProduct(id: Int, newPrice: BigDecimal) {
+        val product = fetch(id)
+        if (product != null) {
+            transaction(db) {
+                Products.update({Products.id.eq(id)}) {
+                    it[this.price] = newPrice
+                }
+            }
         }
     }
 }

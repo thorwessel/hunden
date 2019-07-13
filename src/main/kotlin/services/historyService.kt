@@ -16,6 +16,7 @@ class HistoryService(
     }
 
     fun updateHistory(product: Product, price: BigDecimal) {
+        db.updatePriceOnProduct(product.id, price)
         db.addHistory(product, price)
     }
 
