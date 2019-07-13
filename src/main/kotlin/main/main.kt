@@ -22,9 +22,10 @@ fun main() {
 
     val db = Database
             //Make sure DB is located in the below path!
-            // /kode projekter/hunden/src/data/data.db
-            //src/data/data.db
-        .connect("jdbc:sqlite:/tmp/data.db", "org.sqlite.JDBC")
+            //Widndows "jdbc:sqlite:/kode projekter/hunden/src/data/data.db"
+            //Mac "jdbc:sqlite:/src/data/data.db"
+            //Docker "jdbc:sqlite:/tmp/data.db"
+        .connect("jdbc:sqlite:/kode projekter/hunden/src/data/data.db", "org.sqlite.JDBC")
         .also {
             TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
             transaction(it) {
